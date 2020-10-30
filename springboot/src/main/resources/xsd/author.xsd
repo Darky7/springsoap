@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://soapserver/api/author-ws"
+           targetNamespace="http://soapserver/api/author-ws"
+           elementFormDefault="qualified">
+
+    <xs:element name="getAuthorByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="authorId" type="xs:long" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="getAuthorByIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="authorType" type="tns:authorType" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="authorType">
+        <xs:sequence>
+            <xs:element name="authorId" type="xs:long" />
+            <xs:element name="firstname" type="xs:string" />
+            <xs:element name="lastname" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="getAllAuthorRequest">
+        <xs:complexType/>
+    </xs:element>
+    <xs:element name="getAllAuthorResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="authorType" type="tns:authorType" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:complexType name="serviceStatus">
+        <xs:sequence>
+            <xs:element name="statusCode" type="xs:string"/>
+            <xs:element name="message" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="addAuthorRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="firstname" type="xs:string"/>
+                <xs:element name="lastname" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="addAuthorResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="serviceStatus" type="tns:serviceStatus"/>
+                <xs:element name="authorType" type="tns:authorType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="updateAuthorRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="authorId" type="xs:long" />
+                <xs:element name="firstname" type="xs:string"/>
+                <xs:element name="lastname" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="updateAuthorResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="serviceStatus" type="tns:serviceStatus"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="deleteAuthorRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="authorId" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="deleteAuthorResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="serviceStatus" type="tns:serviceStatus"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>
